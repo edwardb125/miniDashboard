@@ -1,0 +1,51 @@
+<div class="full-page">
+  <a routerLink="/dashboard">logout</a>
+  <div class="main">
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Mini dashboard</mat-card-title>
+        <mat-card-subtitle>fast & secure</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://www.smartinvestment.in/assets/fed/images/bg/login-banner.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          Leave the management of your projects to us.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="example-card">
+      <div class="top-title">
+        <mat-card-header>
+          <mat-card-title>Login </mat-card-title>
+          <mat-card-subtitle>Enter your email & password</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+
+
+
+      <form  class="example-form" [formGroup]="loginForm" (ngSubmit)="show()">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="dashboard@gmail.com" required>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" placeholder="123@/aB" type="password" required>
+          </mat-form-field>
+
+          <div class="btn">
+            <div class="nt">
+              <button mat-raised-button color="warn">Login</button>
+            </div>
+          </div>
+        </form>
+    </mat-card>
+  </div>
+</div>
+

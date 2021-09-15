@@ -1,0 +1,39 @@
+
+<p>
+  <mat-toolbar color="warn">
+    <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- <span>My App</span> -->
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button> -->
+    <h3>erfanhematig@gmail.com</h3>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button> -->
+  </mat-toolbar>
+</p>
+
+<app-content></app-content>
+
+<div class="full">
+  <mat-drawer-container class="example-container" [hasBackdrop]="'true'">
+    <mat-drawer class="drawer" #drawer [mode]="'over'">
+      <div class="slider-header">
+        <h1 class="slider-text">drawer</h1>
+      </div>
+      <div class="slidebar">
+          <button mat-raised-button color="warn" class="signout" (click)="signOut()">Logout</button>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <!-- <p>dashboard works!</p> -->
+      <!-- <a routerLink="/login">logout</a> -->
+      <!-- <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button> -->
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>
+
