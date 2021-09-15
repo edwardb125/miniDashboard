@@ -23,6 +23,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { ContentComponent } from './content/content.component';
 import { TableComponent } from './table/table.component';
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
