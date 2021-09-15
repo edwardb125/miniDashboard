@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { ContentComponent } from './content/content.component';
+import { TableComponent } from './table/table.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     ErrorPageComponent,
-    ContentComponent
+    ContentComponent,
+    TableComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
