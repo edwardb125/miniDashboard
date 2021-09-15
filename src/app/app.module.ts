@@ -24,6 +24,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ContentComponent } from './content/content.component';
 import { TableComponent } from './table/table.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
@@ -57,7 +59,9 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatIconModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

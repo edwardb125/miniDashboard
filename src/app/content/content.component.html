@@ -23,24 +23,41 @@
   </div>
 
   <div class="task form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Task</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  </div>
+
+  <!-- <div class="task form">
     <mat-form-field appearance="fill">
       <mat-label>task</mat-label>
-      <mat-select>
+      <mat-select> -->
         <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
           {{food.viewValue}}
         </mat-option> -->
-      </mat-select>
+      <!-- </mat-select>
     </mat-form-field>
   </div>
-
-</div>
+</div> -->
 
 <div class="third-row">
   <div class="hours form">
     <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
+        <mat-label>Hours</mat-label>
+        <input matInput placeholder="Ex. Pizza" value=1>
       </mat-form-field>
     </form>
   </div>
