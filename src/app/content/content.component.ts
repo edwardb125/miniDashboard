@@ -16,35 +16,31 @@ export interface Item { name: string;
 
 export class ContentComponent implements OnInit {
     showForm = new FormGroup({
-      company: new FormControl('')
+      company: new FormControl(''),
+      project: new FormControl(''),
+      task: new FormControl('')
     });
 
   company : any[] = [];
   private itemsCollection : AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
   projectItem!: Observable<Item[]>;
+  taskItem!: Observable<Item[]>;
 
   constructor(private _snackBar: MatSnackBar, private afs: AngularFirestore, private store: AngularFirestore){
     this.itemsCollection = afs.collection<Item>('company');
     this.items = this.itemsCollection.valueChanges({idField: "id"})
-    // console.log(this.items)
-  // @ts-ignore
-    // this.company = this.items;
-  }
-
-  addItem(item: Item){
-    this.itemsCollection.add(item);
   }
 
 
   findProject(){
     const companyRefrence = this.store.doc('company/' + this.showForm.get('company')?.value).ref
     this.projectItem = this.store.collection<Item>('project', ref => ref.where('company', '==', companyRefrence)).valueChanges({ idField: "id"})
-    //@ts-ignore
-    // this.store.collection<Item>('project', ref => ref.where('company', '==', companyRefrence)).valueChanges().subscribe(result => {
-    //   console.log(result)
-    // })
-    // console.log(this.projectItem)
+  }
+
+  findTask(){
+    const projectRefrence = this.store.doc('project/' + this.showForm.get('project')?.value).ref
+    this.taskItem = this.store.collection<Item>('task', ref => ref.where('project', '==', projectRefrence)).valueChanges({ idField: "id"})
   }
 
   myControl = new FormControl();

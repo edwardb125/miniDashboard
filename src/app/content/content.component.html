@@ -27,7 +27,10 @@
     <div class="project form">
       <mat-form-field appearance="fill">
         <mat-label>project</mat-label>
-        <mat-select required>
+        <mat-select
+          required
+          formControlName="project"
+          (selectionChange)="findTask()">
           <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
             {{item.name}}
           </mat-option>
@@ -38,8 +41,10 @@
     <div class="task form">
       <mat-form-field appearance="fill">
         <mat-label>task</mat-label>
-        <mat-select required>
-          <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
+        <mat-select required
+          formControlName="task"
+        >
+          <mat-option *ngFor="let item of taskItem | async" [value]="item.id">
             {{item.name}}
           </mat-option>
         </mat-select>
