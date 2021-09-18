@@ -1,12 +1,21 @@
 <div class="second-row">
+  <!-- <p>{{ (item | async)?.name }}</p> -->
+
+  <ul>
+    <li *ngFor="let item of items | async">
+      {{ item.name }}
+    </li>
+  </ul>
 
   <div class="company form">
     <mat-form-field appearance="fill">
       <mat-label>company</mat-label>
-      <mat-select required>
-        <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option> -->
+      <mat-select
+        required
+      >
+        <mat-option *ngFor="let item of items | async" [value]="item.name">
+          {{item.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -14,7 +23,7 @@
   <div class="project form">
     <mat-form-field appearance="fill">
       <mat-label>project</mat-label>
-      <mat-select>
+      <mat-select required>
         <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
           {{food.viewValue}}
         </mat-option> -->
@@ -29,6 +38,7 @@
              placeholder="Pick one"
              aria-label="Number"
              matInput
+             required
              [formControl]="myControl"
              [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
@@ -57,7 +67,7 @@
     <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Hours</mat-label>
-        <input matInput placeholder="Ex. Pizza" value=1>
+        <input matInput required placeholder="Ex. Pizza" value=1>
       </mat-form-field>
     </form>
   </div>

@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @Input() email :string='sfsfd'
-
+  // @Input() email :string='sfsfd'
+  email: string = ''
   constructor(private auth: AngularFireAuth, private router: Router) { }
 
   ngOnInit(): void {
+    this.auth.onAuthStateChanged((user) => {
+     // @ts-ignore
+      this.email = user.email;
+    }).then()
   }
   signOut(){
     this.auth.signOut();
