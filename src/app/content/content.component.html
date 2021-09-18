@@ -6,86 +6,70 @@
     </li>
   </ul>
 
-  <form [formGroup]="showForm">
-    <div class="company form">
-      <mat-form-field appearance="fill">
-        <mat-label>company</mat-label>
-        <mat-select
-          required
-          formControlName="company"
-          (selectionChange)="findProject()"
-          >
+  <form [formGroup]="showForm" >
+    <div class="grand-form">
+      <div class="company form">
+        <mat-form-field appearance="fill">
+          <mat-label>company</mat-label>
+          <mat-select
+            required
+            formControlName="company"
+            (selectionChange)="findProject()">
+            <mat-option *ngFor="let item of items | async" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          <mat-option *ngFor="let item of items | async" [value]="item.id">
+
+
+    <div class="project form">
+      <mat-form-field appearance="fill">
+        <mat-label>project</mat-label>
+        <mat-select required>
+          <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
             {{item.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-  </form>
 
-
-  <div class="project form">
-    <mat-form-field appearance="fill">
-      <mat-label>project</mat-label>
-      <mat-select required>
-        <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
-          {{item.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!-- <div class="task form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Task</mat-label>
-      <input type="text"
-             placeholder="Pick one"
-             aria-label="Number"
-             matInput
-             required
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </div> -->
-
-  <div class="task form">
-    <mat-form-field appearance="fill">
-      <mat-label>task</mat-label>
-      <mat-select required>
-        <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
-          {{item.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-</div>
-
-
-<div class="third-row">
-
-  <div class="hours form">
-    <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Hours</mat-label>
-        <input matInput required placeholder="Ex. Pizza" value=1>
+    <div class="task form">
+      <mat-form-field appearance="fill">
+        <mat-label>task</mat-label>
+        <mat-select required>
+          <mat-option *ngFor="let item of projectItem | async" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-    </form>
-  </div>
+    </div>
+    </div>
 
-  <div class="save-btn form">
-    <button mat-raised-button color="warn" class="save">Save</button>
-    <!-- <button mat-raised-button color="warn" class="signout" (click)="signOut()">Save</button> -->
+</form>
+
+
+
+  <div class="third-row">
+
+    <div class="hours form">
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Hours</mat-label>
+          <input matInput required placeholder="Ex. Pizza" value=1>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="save-btn form">
+      <button mat-raised-button color="warn" class="save">Save</button>
+      <!-- <button mat-raised-button color="warn" class="signout" (click)="signOut()">Save</button> -->
+    </div>
+
   </div>
 
 </div>
-
 
 
 
