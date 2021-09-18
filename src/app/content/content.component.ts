@@ -25,7 +25,7 @@ export class ContentComponent implements OnInit {
 
     this.itemsCollection = afs.collection<Item>('company');
     this.items = this.itemsCollection.valueChanges();
-   // @ts-ignore
+  // @ts-ignore
     this.company = this.items;
   }
 
