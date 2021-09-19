@@ -1,9 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Component, OnInit, Output } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Observable, Subject} from 'rxjs';
-import {first, map, startWith} from 'rxjs/operators';
-import { AngularFirestoreDocument, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 export interface Item { name: string;
   id: string; }
