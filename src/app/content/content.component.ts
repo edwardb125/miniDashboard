@@ -2,8 +2,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { ContentService } from './content.service'
 
 export interface Item { name: string; id: string; }
 
@@ -26,7 +26,7 @@ export class ContentComponent implements OnInit {
   projectItem!: Observable<Item[]>;
   taskItem!: Observable<Item[]>;
 
-  constructor(private _snackBar: MatSnackBar, private afs: AngularFirestore, private store: AngularFirestore){
+  constructor(private contentService: ContentService, private _snackBar: MatSnackBar, private afs: AngularFirestore, private store: AngularFirestore){
     this.itemsCollection = afs.collection<Item>('company');
     this.items = this.itemsCollection.valueChanges({idField: "id"})
   }
@@ -34,20 +34,11 @@ export class ContentComponent implements OnInit {
   async save(){
     if(this.showForm.valid){
       const id = this.store.createId()
-    const companyID = this.showForm.get('company')?.value;
-    const projectID = this.showForm.get('project')?.value;
-    const taskID = this.showForm.get('task')?.value;
-    const hours = this.showForm.get('hours')?.value;
-
-    this.store.collection('record').doc(id).set({
-      company: this.store.doc('/company/' + companyID).ref,
-      project: this.store.doc('/project/' + projectID).ref,
-      task: this.store.doc('/task/' + taskID).ref,
-      hours: hours
-    })
-    this._snackBar.open("Added successfully", '',{
-      duration: 3000
-    })
+      const companyID = this.showForm.get('company')?.value;
+      const projectID = this.showForm.get('project')?.value;
+      const taskID = this.showForm.get('task')?.value;
+      const hours = this.showForm.get('hours')?.value;
+      this.contentService.saveInformation({id, companyID, projectID, taskID, hours});
     }
     else{
       this._snackBar.open("Please Fill Inputs", '',{
@@ -66,21 +57,6 @@ export class ContentComponent implements OnInit {
     this.taskItem = this.store.collection<Item>('task', ref => ref.where('project', '==', projectRefrence)).valueChanges({ idField: "id"})
   }
 
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions!: Observable<string[]>;
-
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  ngOnInit() {}
 
 }

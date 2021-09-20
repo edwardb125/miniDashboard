@@ -1,5 +1,6 @@
 
 <div class="full">
+
   <mat-drawer-container class="example-container" [hasBackdrop]="'true'">
     <mat-drawer class="drawer" #drawer [mode]="'over'">
       <div class="slider-header">
@@ -13,24 +14,22 @@
 
   <mat-drawer-content>
     <div class="test">
+      <mat-toolbar class="toolbar" color="warn">
+        <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <h3>{{email}}</h3>
+      </mat-toolbar>
 
-    <mat-toolbar class="toolbar" color="warn">
-      <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="example-spacer"></span>
-      <h3>{{email}}</h3>
-    </mat-toolbar>
-
-    <app-content></app-content>
-    <div class="table">
-      <app-table></app-table>
+      <app-content></app-content>
+      <div class="table">
+        <app-table></app-table>
+      </div>
     </div>
-  </div>
-
-
 
     </mat-drawer-content>
   </mat-drawer-container>
+
 </div>
 
