@@ -35,12 +35,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-</div>
- -->
+</div> -->
+
 
  <h2>this is for test</h2>
 
- <ng-container *ngIf="joined$ | async; else loading; let joined">
+ <!-- <ng-container *ngIf="joined$ | async; else loading; let joined">
   <div class="card m-2" style="width: 18rem;" *ngFor="let blogPost of joined">
     <div class="card-body">
       <h5 class="card-title">{{ blogPost.title }}</h5>
@@ -48,7 +48,7 @@
       <small>{{ blogPost.author.name }}</small>
     </div>
   </div>
-</ng-container>
+</ng-container> -->
 
 <ng-template #loading>
   Loading...
