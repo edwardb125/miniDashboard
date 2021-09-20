@@ -1,11 +1,19 @@
 .table{
   width: 90%;
-  // display: flex;
-  // justify-content: center;
-  // flex-wrap: wrap;
   margin:0 auto;
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 table {
   width: 100%;
+}
+
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }

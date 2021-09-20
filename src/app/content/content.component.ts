@@ -32,17 +32,12 @@ export class ContentComponent implements OnInit {
   }
 
   async save(){
-    const id = this.store.createId()
+    if(this.showForm.valid){
+      const id = this.store.createId()
     const companyID = this.showForm.get('company')?.value;
     const projectID = this.showForm.get('project')?.value;
     const taskID = this.showForm.get('task')?.value;
     const hours = this.showForm.get('hours')?.value;
-
-    console.log(companyID)
-    console.log(projectID)
-    console.log(taskID)
-    console.log(hours)
-    console.log(id)
 
     this.store.collection('record').doc(id).set({
       company: this.store.doc('/company/' + companyID).ref,
@@ -50,7 +45,15 @@ export class ContentComponent implements OnInit {
       task: this.store.doc('/task/' + taskID).ref,
       hours: hours
     })
-
+    this._snackBar.open("Added successfully", '',{
+      duration: 3000
+    })
+    }
+    else{
+      this._snackBar.open("Please Fill Inputs", '',{
+        duration: 3000
+      })
+    }
   }
 
   findProject(){
@@ -73,7 +76,6 @@ export class ContentComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
-      console.log('heellloo')
   }
 
   private _filter(value: string): string[] {
