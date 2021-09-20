@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  // @Input() email :string='sfsfd'
   email: string = ''
   constructor(private auth: AngularFireAuth, private router: Router) { }
 
@@ -20,8 +19,6 @@ export class DashboardComponent implements OnInit {
   }
   signOut(){
     this.auth.signOut();
-    console.log("sfjlasdfjafjdsldfksj");
-    // this.user.next(null);
     return this.router.navigate(['/login']);
   }
 

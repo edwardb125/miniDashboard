@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   show(){
-    console.log(this.loginForm.get("email")?.value);
+    // console.log(this.loginForm.get("email")?.value);
     const email = this.loginForm.get('email')?.value
     const password = this.loginForm.get('password')?.value
 
@@ -28,11 +28,12 @@ export class LoginComponent implements OnInit {
       this._snackBar.open("Hello " + result.user?.email, '',{
         duration: 3000
       });
-      console.log(result)
+      // console.log(result)
       return this.router.navigate(['/dashboard']);
       }
     ).catch(()=>{
       console.log("error !");
+      this._snackBar.open("please enter valid information!", '',{duration: 3000});
     })
   }
   }

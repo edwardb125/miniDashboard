@@ -30,7 +30,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [DashboardGuard]},
-  {path: 'errorpage', component: ErrorPageComponent}
+  {path: '', component: DashboardComponent, canActivate: [DashboardGuard]},
+  {path: 'errorpage', component: ErrorPageComponent},
+  {path: '**', component: ErrorPageComponent}
 ]
 //
 @NgModule({

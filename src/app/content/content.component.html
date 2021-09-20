@@ -1,11 +1,5 @@
 <div class="second-row">
 
-  <ul>
-    <li *ngFor="let item of items | async">
-      {{ item.name }}
-    </li>
-  </ul>
-
   <form [formGroup]="showForm" >
     <div class="grand-form">
       <div class="company form">
@@ -42,8 +36,7 @@
       <mat-form-field appearance="fill">
         <mat-label>task</mat-label>
         <mat-select required
-          formControlName="task"
-        >
+          formControlName="task">
           <mat-option *ngFor="let item of taskItem | async" [value]="item.id">
             {{item.name}}
           </mat-option>
@@ -52,28 +45,27 @@
     </div>
     </div>
 
-</form>
+
 
 
 
   <div class="third-row">
 
     <div class="hours form">
-      <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Hours</mat-label>
-          <input matInput required placeholder="Ex. Pizza" value=1>
-        </mat-form-field>
-      </form>
+        <div class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Hours</mat-label>
+            <input formControlName="hours" min="1" matInput required placeholder="1" value=1 type="number">
+          </mat-form-field>
+        </div>
     </div>
 
     <div class="save-btn form">
-      <button mat-raised-button color="warn" class="save">Save</button>
-      <!-- <button mat-raised-button color="warn" class="signout" (click)="signOut()">Save</button> -->
+      <button mat-raised-button color="warn" class="save" (click)="save()">Save</button>
     </div>
 
   </div>
-
+</form>
 </div>
 
 
