@@ -14,8 +14,8 @@ export class TableService {
     return this.store.collection('record', ref => ref.orderBy('hours')).valueChanges({idField: 'id'}).pipe(
       switchMap( records => {
         return combineLatest(
-          records.map(r => {
-            return this.getRecordFromFirestore(r)
+          records.map(answer => {
+            return this.getRecordFromFirestore(answer)
           })
         )
       })

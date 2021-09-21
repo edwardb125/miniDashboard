@@ -26,7 +26,10 @@ export class ContentComponent implements OnInit {
   projectItem!: Observable<Item[]>;
   taskItem!: Observable<Item[]>;
 
-  constructor(private contentService: ContentService, private _snackBar: MatSnackBar, private afs: AngularFirestore, private store: AngularFirestore){
+  constructor(private contentService: ContentService,
+              private _snackBar: MatSnackBar,
+              private afs: AngularFirestore,
+              private store: AngularFirestore){
     this.itemsCollection = afs.collection<Item>('company');
     this.items = this.itemsCollection.valueChanges({idField: "id"})
   }
