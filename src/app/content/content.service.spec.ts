@@ -23,8 +23,9 @@ describe('ContentService', () => {
   });
 
   it('should call snackbar', () => {
-    // @ts-ignore
 
+
+    // @ts-ignore
     store.collection= (name)=>{
       return{
       //@ts-ignore
