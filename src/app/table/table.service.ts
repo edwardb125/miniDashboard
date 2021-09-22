@@ -11,7 +11,8 @@ export class TableService {
   constructor(private store: AngularFirestore,) { }
 
   getRecord() {
-    return this.store.collection('record', ref => ref.orderBy('hours')).valueChanges({idField: 'id'}).pipe(
+    return this.store.collection('record', ref => ref.orderBy('hours'))
+      .valueChanges({idField: 'id'}).pipe(
       switchMap( records => {
         return combineLatest(
           records.map(answer => {

@@ -56,9 +56,41 @@ describe('TableService', () => {
     // console.log(result)
     const obj = service.getRecordFromFirestore(input)
     obj.subscribe(x => {
+      expect(x).toEqual(output)
+    })
+  });
+
+  it('should return an object', function () {
+    const input = {
+      company: { id : "Pg0dK2QSBT6JX3P0G1Hv"},
+      project: { id : "CrhWQ3NeCcIGlLCUwzrm"},
+      task: { id : "80BCc9ljG47OZvfXOMJA"},
+      id: "11111",
+      hours: 4
+    };
+    const output = {
+      company : { name : 'binance'},
+      project : { name : 'sell'},
+      task : { name : 'dashboard'},
+      id : '11111',
+      hours : 4
+    };
+
+    store.collection.and.returnValue({
+      // @ts-ignore
+    valueChanges : (x) => {
+      return of([input])
+    }
+    })
+      service.getRecordFromFirestore = (result:any)=>{
+        return of(output)
+    }
+
+    const obj = service.getRecord()
+    obj.subscribe(x => {
       console.log(x)
       console.log(output)
-      expect(x).toEqual(output)
+      expect(x).toEqual([output])
     })
   });
 });

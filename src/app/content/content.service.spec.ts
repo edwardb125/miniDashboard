@@ -10,7 +10,7 @@ describe('ContentService', () => {
   let _snackBar: jasmine.SpyObj<MatSnackBar>;
 
   beforeEach(() => {
-    const storeSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
+    const storeSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'doc']);
     const snackSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
     TestBed.configureTestingModule({providers:[
       ContentService,
@@ -23,19 +23,26 @@ describe('ContentService', () => {
   });
 
   it('should call snackbar', () => {
-
-
+    const data = {
+      companyID : "aaaa"
+    }
     // @ts-ignore
-    store.collection= (name)=>{
-      return{
-      //@ts-ignore
-      doc :(_id) => {
-        return {
-          set :(_info: any) =>{
+    store.collection.withArgs('record').and.returnValue({
+      // @ts-ignore
+      doc : (x) =>{
+        return ({
+          set: () =>{
+
           }
-        }
-      }
-    }}
+        })
+    }
+    })
+
+    store.doc.and.returnValue({
+      // @ts-ignore
+      ref: 'done'
+    })
+
     service.saveInformation({})
     expect(_snackBar.open).toHaveBeenCalledWith('Added successfully','', {duration: 3000});
 
