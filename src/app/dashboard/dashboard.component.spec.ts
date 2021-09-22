@@ -8,7 +8,6 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
   let authService : AngularFireAuth;
   let routService : Router;
-  let spy: any;
 
   beforeEach(async () => {
     const SpyAuth = jasmine.createSpyObj('AngularFireAuth',['signOut','onAuthStateChanged'])
