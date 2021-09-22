@@ -36,32 +36,30 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async () => {
     const obj = {
       user: {
-        email: 'erfan@gmail.com',
+        email: 'gmail',
       }
     }
-    component.loginForm.get("email")?.setValue('erfan@gmail.com')
-    component.loginForm.get("password")?.setValue('1111')
     // @ts-ignore
-    authService.signInWithEmailAndPassword.and.returnValue({
-      return promise.resolve(obj)
-    })
-    const final = component.show()
-    expect(snackBar.open).toHaveBeenCalledWith('Hello'+obj.user.email,'', {duration: 3000});
-
+    authService.signInWithEmailAndPassword.and.returnValue(
+      Promise.resolve(obj)
+    )
     //@ts-ignore
-    // routService.navigate = () => {
-    //   return '/login'
-    // }
-    // expect(component).toBeTruthy();
+    routService.navigate = () => {
+      return '/login'
+    }
+    const final = await component.show()
+    expect(snackBar.open).toHaveBeenCalledWith('Hello gmail','', {duration: 3000});
   });
 
-
-
-
-  it('should show enter valid in snackBar', () => {
+  it('should show enter valid in snackBar', async () => {
+    //@ts-ignore
+    authService.signInWithEmailAndPassword.and.returnValue(
+      Promise.reject('error')
+    )
+    const final = await component.show()
     expect(snackBar.open).toHaveBeenCalledWith('please enter valid information!','', {duration: 3000});
   })
 });

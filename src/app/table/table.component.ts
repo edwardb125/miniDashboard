@@ -26,14 +26,14 @@ export class TableComponent implements OnInit {
   done = false;
 
 
-  constructor(private tabletService: TableService,
-              private af: AngularFirestore,
+  constructor(private tableService: TableService,
+              // private af: AngularFirestore,
               private store: AngularFirestore) {}
 
 
 
   ngOnInit() {
-    this.data = this.tabletService.getRecord().subscribe(result => {
+    this.data = this.tableService.getRecord().subscribe(result => {
       //@ts-ignore
       this.dataSource = result
       this.size = result.length;

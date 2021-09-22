@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(){
+  async show(){
     const email = this.loginForm.get('email')?.value
     const password = this.loginForm.get('password')?.value
 
-    this.auth.signInWithEmailAndPassword(email, password).then(result => {
+    await this.auth.signInWithEmailAndPassword(email, password).then(result => {
       this._snackBar.open("Hello " + result.user?.email, '',{
         duration: 3000
       });
