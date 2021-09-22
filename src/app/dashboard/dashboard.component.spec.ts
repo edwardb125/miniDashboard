@@ -8,6 +8,7 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
   let authService : AngularFireAuth;
   let routService : Router;
+  let spy: any;
 
   beforeEach(async () => {
     const SpyAuth = jasmine.createSpyObj('AngularFireAuth',['signOut','onAuthStateChanged'])
@@ -46,13 +47,20 @@ describe('DashboardComponent', () => {
       return '/login'
     }
     const final = component.signOut()
-    console.log(final)
-    console.log('/login')
     // @ts-ignore
     expect(final).toEqual('/login');
   });
 
   it('should test ngOnInit', () => {
+    // @ts-ignore
+    authService.onAuthStateChanged = (x) => {
+      // @ts-ignore
+     x({email:"ff"})
+    }
+    component.ngOnInit()
+    fixture.detectChanges();
 
+    // @ts-ignore
+    expect(component.email).toEqual("ff")
   })
 });
