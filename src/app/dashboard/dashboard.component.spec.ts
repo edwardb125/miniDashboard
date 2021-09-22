@@ -1,25 +1,58 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-//
-// import { DashboardComponent } from './dashboard.component';
-//
-// describe('DashboardComponent', () => {
-//   let component: DashboardComponent;
-//   let fixture: ComponentFixture<DashboardComponent>;
-//
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ DashboardComponent ]
-//     })
-//     .compileComponents();
-//   });
-//
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(DashboardComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-//
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DashboardComponent } from './dashboard.component';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {Router} from "@angular/router";
+
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
+  let authService : AngularFireAuth;
+  let routService : Router;
+
+  beforeEach(async () => {
+    const SpyAuth = jasmine.createSpyObj('AngularFireAuth',['signOut','onAuthStateChanged'])
+    const SpyRouter = jasmine.createSpyObj('Router', ['navigate', 'navigate'])
+
+    await TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      providers: [
+        {provide: AngularFireAuth, useValue: SpyAuth},
+        {provide: Router, useValue: SpyRouter}
+      ]}).compileComponents();
+
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    authService = fixture.debugElement.injector.get(AngularFireAuth)
+    routService = fixture.debugElement.injector.get(Router)
+    // @ts-ignore
+    authService.onAuthStateChanged = (x) => {
+      return Promise.resolve
+    }
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should return router navigate to /login', () => {
+    // @ts-ignore
+    authService.onAuthStateChanged = (x) => {
+      return {}
+    }
+    // @ts-ignore
+    authService.signOut = () => {}
+    // @ts-ignore
+    routService.navigate = () => {
+      return '/login'
+    }
+    const final = component.signOut()
+    console.log(final)
+    console.log('/login')
+    // @ts-ignore
+    expect(final).toEqual('/login');
+  });
+
+  it('should test ngOnInit', () => {
+
+  })
+});

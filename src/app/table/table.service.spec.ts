@@ -88,8 +88,6 @@ describe('TableService', () => {
 
     const obj = service.getRecord()
     obj.subscribe(x => {
-      console.log(x)
-      console.log(output)
       expect(x).toEqual([output])
     })
   });

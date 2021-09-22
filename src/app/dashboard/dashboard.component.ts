@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     this.auth.onAuthStateChanged((user) => {
      // @ts-ignore
       this.email = user.email;
-    }).then()
+    })
   }
   signOut(){
     this.auth.signOut();
