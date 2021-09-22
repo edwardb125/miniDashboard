@@ -13,7 +13,7 @@ describe('TableComponent', () => {
 
   beforeEach(async () => {
     const SpyTableService = jasmine.createSpyObj('TableService',['get', 'getRecord'])
-    const SpyStore = jasmine.createSpyObj('AngularFirestore', ['doc'])
+    const SpyStore = jasmine.createSpyObj('AngularFirestore', ['doc', 'delete'])
 
     await TestBed.configureTestingModule({
       declarations: [ TableComponent ],
@@ -41,8 +41,20 @@ describe('TableComponent', () => {
 
   });
 
-  it('should create', () => {
+  it('should complete size to 5', () => {
     component.ngOnInit()
     expect(component.size).toEqual(5);
   });
+
+  it('should call record/', () => {
+    // @ts-ignore
+    store.doc.and.returnValue({
+      delete : () => {}
+    })
+
+    const final = component.delete("")
+    //@ts-ignore
+    expect(store.doc).toHaveBeenCalledWith('record/');
+  })
+
 });
