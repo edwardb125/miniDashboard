@@ -26,4 +26,4 @@ at top we have toolbar thats contain email and drawer button and at second row u
 at the middle of the page we have table that add from angular material, task of this table is get data from firestore and show them. at this table we have a button for delete data from fire store
 
 ## error page
-this is a simple page that show <h1>Page Not Found</h1> if invalid url entered.
+this is a simple page that show "Page Not Found" if invalid url entered.
