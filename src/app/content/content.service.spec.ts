@@ -37,14 +37,11 @@ describe('ContentService', () => {
         })
     }
     })
-
     store.doc.and.returnValue({
       // @ts-ignore
       ref: 'done'
     })
-
     service.saveInformation({})
     expect(_snackBar.open).toHaveBeenCalledWith('Added successfully','', {duration: 3000});
-
   });
 });

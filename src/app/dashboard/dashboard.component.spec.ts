@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -18,7 +19,9 @@ describe('DashboardComponent', () => {
       providers: [
         {provide: AngularFireAuth, useValue: SpyAuth},
         {provide: Router, useValue: SpyRouter}
-      ]}).compileComponents();
+      ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
 
   });
 

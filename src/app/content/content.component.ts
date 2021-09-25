@@ -21,18 +21,15 @@ export class ContentComponent implements OnInit {
       hours: new FormControl('')
     });
 
-  private itemsCollection : AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+  private itemsCollection : AngularFirestoreCollection<Item> | undefined;
+  items: Observable<Item[]> | undefined;
   projectItem!: Observable<Item[]>;
   taskItem!: Observable<Item[]>;
 
   constructor(private contentService: ContentService,
               private _snackBar: MatSnackBar,
               private afs: AngularFirestore,
-              private store: AngularFirestore){
-    this.itemsCollection = afs.collection<Item>('company');
-    this.items = this.itemsCollection.valueChanges({idField: "id"})
-  }
+              private store: AngularFirestore){}
 
   async save(){
     if(this.showForm.valid){
@@ -44,6 +41,7 @@ export class ContentComponent implements OnInit {
       this.contentService.saveInformation({id, companyID, projectID, taskID, hours});
     }
     else{
+      console.log('omad inja')
       this._snackBar.open("Please Fill Inputs", '',{
         duration: 3000
       })
@@ -60,6 +58,9 @@ export class ContentComponent implements OnInit {
     this.taskItem = this.store.collection<Item>('task', ref => ref.where('project', '==', projectRefrence)).valueChanges({ idField: "id"})
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.itemsCollection = this.afs.collection<Item>('company');
+    this.items = this.itemsCollection.valueChanges({idField: "id"})
+  }
 
 }

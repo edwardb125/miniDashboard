@@ -4,6 +4,7 @@ import { TableComponent } from './table.component';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {TableService} from "./table.service";
 import {of} from "rxjs";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -20,7 +21,9 @@ describe('TableComponent', () => {
       providers: [
         {provide: AngularFirestore, useValue: SpyStore},
         {provide: TableService, useValue: SpyTableService}
-      ]})
+      ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
+    })
     .compileComponents();
   });
 

@@ -3,6 +3,7 @@ import { LoginComponent } from './login.component';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -23,7 +24,8 @@ describe('LoginComponent', () => {
         {provide: AngularFireAuth, useValue: SpyAuth},
         {provide: Router, useValue: SpyRouter},
         {provide: MatSnackBar, useValue: SpySnackBar}
-      ]})
+      ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]})
     .compileComponents();
   });
 
