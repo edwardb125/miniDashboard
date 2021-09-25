@@ -4,6 +4,7 @@
 This project has 3 page: login, dashboard, error(not found)
 project link: 
 email : erfanhematig@gmail.com
+
 pass  : 555555
 
 ## project intorduction 
@@ -17,3 +18,12 @@ If you are logged in and go to login page redirect to dashboard page.
 
 ## dashboard page
 After login you redirect to this page. In this page if you enter login url without log out you redirect to this page again.
+
+we use angular material in all ccomponent.
+
+at top we have toolbar thats contain email and drawer button and at second row use input for company, project, task and at third row have input for hours and save button to save data in firestore.
+
+at the middle of the page we have table that add from angular material, task of this table is get data from firestore and show them. at this table we have a button for delete data from fire store
+
+## error page
+this is a simple page that show <h1>Page Not Found</h1> if invalid url entered.
