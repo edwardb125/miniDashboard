@@ -1,5 +1,8 @@
 # MiniDashboardChallenge
 
+## Deploy
+[https://dashboard-2af8c.web.app/dashboard](https://dashboard-2af8c.web.app/dashboard)
+
 ## pages
 This project has 3 page: login, dashboard, error(not found)
 project link: 
